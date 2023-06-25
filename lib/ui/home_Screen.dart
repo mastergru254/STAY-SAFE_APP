@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       alignment: Alignment.topCenter,
                       child: Image.asset(
-                        "asset/req.png",
+                        "asset/alert_emergency.png",
                         height: 120,
                       ),
                     ),
@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           alignment: Alignment.topCenter,
                           child: Image.asset(
-                            "asset/donate.png",
+                            "asset/charity_donation.png",
                             height: 120,
                           ),
                         ),
