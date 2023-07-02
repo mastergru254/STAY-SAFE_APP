@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.purple,
       appBar: AppBar(
         backgroundColor: green,
         title: const Text('Stay Safe'),
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 120,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 5),
                     Text(
                       'Request',
                       style: TextStyle(
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 16,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontSize: 16,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 20),
                   ],
                 ),
               ),
@@ -125,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 10),
                       ],
                     ),
                   ),
@@ -155,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 10),
                       ],
                     ),
                   ),
