@@ -1,8 +1,11 @@
+// ignore_for_file: unused_import
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:stay_safe/ui/auth_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:stay_safe/ui/mainScreen.dart';
 
 import 'firebase_options.dart';
 
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const AuthPage(),
+          home: const HomePage(),
         );
       },
     );
