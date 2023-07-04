@@ -151,78 +151,81 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Notifications'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const NotificationPage()));
-            },
-            icon: const Icon(Icons.notifications),
-          )
-        ],
-      ),
-      body: Center(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextFormField(
-              controller: username,
-              decoration: const InputDecoration(labelText: 'Username'),
-            ),
-            TextFormField(
-              controller: title,
-              decoration: const InputDecoration(labelText: 'Title'),
-            ),
-            TextFormField(
-              controller: body,
-              decoration: const InputDecoration(labelText: 'Content'),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-                onPressed: () async {
-                  String name = username.text.trim();
-                  String titleText = title.text;
-                  String bodyText = body.text;
-
-                  if (name.isNotEmpty &&
-                      titleText.isNotEmpty &&
-                      bodyText.isNotEmpty) {
-                    QuerySnapshot snap = await FirebaseFirestore.instance
-                        .collection("UserTokens")
-                        .get();
-                    List<String> tokens = [];
-                    for (QueryDocumentSnapshot documentSnapshot in snap.docs) {
-                      String token = documentSnapshot.get('token') as String;
-                      tokens.add(token);
-                      await _notifications.doc(name).set({
-                        "title": titleText,
-                        "body": bodyText,
-                        "Timestamp": Timestamp.now()
-                      });
-                      username.text = '';
-                      title.text = '';
-                      body.text = '';
-                    }
-                    print("All tokens is  $tokens");
-                    sendPushMessage(tokens, titleText, bodyText);
-                  } else {
-                    Fluttertoast.showToast(msg: "Fill in all fields");
-                  }
-                },
-                child: Text('Submit'))
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Notifications'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NotificationPage()));
+              },
+              icon: const Icon(Icons.notifications),
+            )
           ],
         ),
-      )),
+        body: Center(
+            child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormField(
+                controller: username,
+                decoration: const InputDecoration(labelText: 'Username'),
+              ),
+              TextFormField(
+                controller: title,
+                decoration: const InputDecoration(labelText: 'Title'),
+              ),
+              TextFormField(
+                controller: body,
+                decoration: const InputDecoration(labelText: 'Content'),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    String name = username.text.trim();
+                    String titleText = title.text;
+                    String bodyText = body.text;
+
+                    if (name.isNotEmpty &&
+                        titleText.isNotEmpty &&
+                        bodyText.isNotEmpty) {
+                      QuerySnapshot snap = await FirebaseFirestore.instance
+                          .collection("UserTokens")
+                          .get();
+                      List<String> tokens = [];
+                      for (QueryDocumentSnapshot documentSnapshot
+                          in snap.docs) {
+                        String token = documentSnapshot.get('token') as String;
+                        tokens.add(token);
+                        await _notifications.doc(name).set({
+                          "title": titleText,
+                          "body": bodyText,
+                          "Timestamp": Timestamp.now()
+                        });
+                        username.text = '';
+                        title.text = '';
+                        body.text = '';
+                      }
+                      print("All tokens is  $tokens");
+                      sendPushMessage(tokens, titleText, bodyText);
+                    } else {
+                      Fluttertoast.showToast(msg: "Fill in all fields");
+                    }
+                  },
+                  child: Text('Submit'))
+            ],
+          ),
+        )),
+      ),
     );
   }
 }

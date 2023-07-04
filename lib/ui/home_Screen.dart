@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:stay_safe/const/AppColors.dart';
 import 'package:stay_safe/ui/Ambulance_Screen.dart';
 import 'package:stay_safe/ui/NavBar.dart';
-import 'package:stay_safe/ui/donation_Screen.dart';
 import 'package:stay_safe/ui/guidance_Screen.dart';
+import 'package:stay_safe/ui/notify.dart';
 import 'package:stay_safe/ui/request_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       alignment: Alignment.topCenter,
                       child: Image.asset(
-                        "asset/alert_emergency.png",
+                        "asset/Request_Help_Final.png",
                         height: 120,
                       ),
                     ),
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       alignment: Alignment.topCenter,
                       child: Image.asset(
-                        "asset/amb.png",
+                        "asset/ambu.png",
                         height: 120,
                       ),
                     ),
@@ -105,8 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const DonationScreen()),
+                        MaterialPageRoute(builder: (context) => const Notify()),
                       );
                     },
                     child: Column(
@@ -114,15 +113,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           alignment: Alignment.topCenter,
                           child: Image.asset(
-                            "asset/charity_donation.png",
+                            "asset/notification-vector-vector.png",
                             height: 120,
                           ),
                         ),
                         SizedBox(height: 10),
                         Text(
-                          'Donation',
+                          'Red Alert',
                           style: TextStyle(
-                              color: green,
+                              color: Colors.red,
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
