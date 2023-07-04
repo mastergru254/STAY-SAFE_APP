@@ -43,7 +43,7 @@ class _RequestScreenState extends State<RequestScreen> {
           onPageChanged: (index) {
             setState(() => _currentIndex = index);
           },
-          children: <Widget>[Notify(), Help(), HelpPeople()],
+          children: <Widget>[NotifyAlert(), Help(), HelpPeople()],
         ),
       ),
       bottomNavigationBar: BottomNavyBar(

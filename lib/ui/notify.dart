@@ -8,14 +8,14 @@ import 'noti.dart';
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 
-class Notify extends StatefulWidget {
-  const Notify({super.key});
+class NotifyAlert extends StatefulWidget {
+  const NotifyAlert({super.key});
 
   @override
-  State<Notify> createState() => _NotifyState();
+  State<NotifyAlert> createState() => _NotifyState();
 }
 
-class _NotifyState extends State<Notify> {
+class _NotifyState extends State<NotifyAlert> {
   final CollectionReference _Alerts =
       FirebaseFirestore.instance.collection('Alerts');
 

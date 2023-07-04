@@ -12,14 +12,14 @@ import 'package:http/http.dart' as http;
 
 import 'notificationPage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class SendAlert extends StatefulWidget {
+  const SendAlert({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SendAlert> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<SendAlert> {
   String? mtoken = " ";
   late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
@@ -152,6 +152,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -170,7 +171,7 @@ class _HomePageState extends State<HomePage> {
         ),
         body: Center(
             child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(25.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

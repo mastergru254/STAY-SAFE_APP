@@ -5,8 +5,8 @@ import 'package:stay_safe/const/AppColors.dart';
 import 'package:stay_safe/ui/Ambulance_Screen.dart';
 import 'package:stay_safe/ui/NavBar.dart';
 import 'package:stay_safe/ui/guidance_Screen.dart';
-import 'package:stay_safe/ui/notify.dart';
 import 'package:stay_safe/ui/request_screen.dart';
+import 'package:stay_safe/ui/send_msg.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       alignment: Alignment.topCenter,
                       child: Image.asset(
-                        "asset/Request_Help_Final.png",
+                        "asset/request.png",
                         height: 120,
                       ),
                     ),
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Container(
                       alignment: Alignment.topCenter,
                       child: Image.asset(
-                        "asset/ambu.png",
+                        "asset/ambulace.png",
                         height: 120,
                       ),
                     ),
@@ -105,7 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Notify()),
+                        MaterialPageRoute(
+                            builder: (context) => const SendAlert()),
                       );
                     },
                     child: Column(
@@ -113,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           alignment: Alignment.topCenter,
                           child: Image.asset(
-                            "asset/notification-vector-vector.png",
+                            "asset/notification.png",
                             height: 120,
                           ),
                         ),
