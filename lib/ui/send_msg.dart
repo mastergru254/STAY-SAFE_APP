@@ -124,7 +124,7 @@ class _HomePageState extends State<SendAlert> {
             headers: <String, String>{
               'Content-Type': 'application/json',
               'Authorization':
-                  'key=AAAAXfVNN8Q:APA91bH2z06YVchNGEm5lvYDnTddKdfuaL_hAy3tm5JzgAy351u3-S1ICpExo-UAnedq4GX_68uwvDN4LA4f6aoRzJzlBOhwXrNN9TDAnBgdjLAryApgpCA7PeMa6hiZzkqmrFj5P_HV'
+                  'key=AAAAtmfJPag:APA91bGzSq1MqbY-pG4iHApPVpPtO68Si33OdzU2zXAsg-GzUdB5uY2Fk7LTfeKDcmC3BVbEslItYX9wRh1po-EVJd1_wxbbT3689vU91sZA6rWSX13kCQVXSdH3WFTREUqubLL09OzU'
             },
             body: jsonEncode(<String, dynamic>{
               'priority': 'high',
@@ -156,7 +156,7 @@ class _HomePageState extends State<SendAlert> {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Notifications'),
+          title: const Text('Send MSG'),
           actions: [
             IconButton(
               onPressed: () {

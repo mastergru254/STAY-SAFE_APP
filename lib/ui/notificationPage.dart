@@ -12,6 +12,13 @@ class NotificationPage extends StatefulWidget {
 class _MyWidgetState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.purple,
+        appBar: AppBar(
+          title: Text('Read notifications'),
+        ),
+      ),
+    );
   }
 }
