@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:stay_safe/const/AppColors.dart';
@@ -25,31 +26,44 @@ class _AmbulanceServiceState extends State<AmbulanceService> {
   String _location = '';
   // final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(position.latitude, position.longitude);
+    setState(() {
+      _location = placemarks[0].name!;
+    });
+    print("PLACEMARKS IS $placemarks");
+    double latitude = position.latitude;
+    double longitude = position.longitude;
+    String location = placemarks[0].street!;
+    var locationRecord = {
+      "latitude": latitude,
+      "longitude": longitude,
+      "location": location
+    };
+    return locationRecord;
+  }
+
   void sendUserDataToDB() async {
     final FirebaseAuth auth = FirebaseAuth.instance;
     var currentUser = auth.currentUser;
 
     CollectionReference collectionRef =
         FirebaseFirestore.instance.collection("Ambulance_Request_Data");
-    Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    setState(() {
-      _location = placemarks[0].street!;
-    });
-    print(placemarks);
-    double latitude = position.latitude;
-    double longitude = position.longitude;
+
+    var location = await getCurrentLocation();
+
     return collectionRef
         .doc(currentUser!.email)
         .set({
           "name": _nameController.text,
           "phone": _phoneController.text,
           "age": _ageController.text,
-          "location": _location,
-          "latitude": latitude,
-          "longitude": longitude,
+          "location": location['location'],
+          "latitude": location['latitude'],
+          "longitude": location['longitude'],
           "emergency": _emergencyController.text,
         })
         .then((value) => Navigator.push(context,
@@ -184,6 +198,9 @@ class _AmbulanceServiceState extends State<AmbulanceService> {
                           ),
                           onPressed: () async {
                             sendUserDataToDB();
+                            var location = await getCurrentLocation();
+                            _location = location['location'];
+                            updateUserAmbulanceIsComing(_location);
                           },
                           icon: const Icon(
                             Icons.send,
@@ -201,6 +218,21 @@ class _AmbulanceServiceState extends State<AmbulanceService> {
           ),
         ],
       )),
+    );
+  }
+
+  updateUserAmbulanceIsComing(String location) {
+    print("MY LOCATION IS $location");
+//    if location == "blah" :
+    //    return ""
+    //elif location == "":
+
+    //else"
+
+    String response = "Ambulance is coming to $location in 20 minutes.";
+    return Fluttertoast.showToast(
+      msg: response,
+      toastLength: Toast.LENGTH_LONG,
     );
   }
 }

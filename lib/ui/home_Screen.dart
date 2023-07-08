@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: green,
         title: const Text('Stay Safe'),
@@ -122,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Text(
                           'Red Alert',
                           style: TextStyle(
-                              color: Colors.red,
+                              color: Colors.green,
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
