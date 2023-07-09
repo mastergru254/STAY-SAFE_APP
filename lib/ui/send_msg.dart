@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,8 @@ class _HomePageState extends State<SendAlert> {
       FlutterLocalNotificationsPlugin();
   final CollectionReference _notifications =
       FirebaseFirestore.instance.collection('notifications');
+  var currentUser = FirebaseAuth.instance.currentUser;
+
   TextEditingController username = TextEditingController();
   TextEditingController title = TextEditingController();
   TextEditingController body = TextEditingController();
@@ -75,9 +78,11 @@ class _HomePageState extends State<SendAlert> {
 
   // Save device token
   void saveToken(String token) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    var currentUser = auth.currentUser;
     await FirebaseFirestore.instance
         .collection("UserTokens")
-        .doc("User1")
+        .doc(currentUser!.email)
         .set({'token': token});
   }
 
@@ -111,8 +116,8 @@ class _HomePageState extends State<SendAlert> {
           payload: message.data['title']);
       final payload = message.data['title'];
       if (payload != null) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const NotificationPage()));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => const Alert()));
       }
     });
   }
@@ -157,13 +162,12 @@ class _HomePageState extends State<SendAlert> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text('Send MSG'),
+          backgroundColor: Colors.green,
           actions: [
             IconButton(
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const NotificationPage()));
+                    context, MaterialPageRoute(builder: (context) => Alert()));
               },
               icon: const Icon(Icons.notifications),
             )
@@ -177,7 +181,7 @@ class _HomePageState extends State<SendAlert> {
             children: [
               TextFormField(
                 controller: username,
-                decoration: const InputDecoration(labelText: 'Username'),
+                decoration: const InputDecoration(labelText: 'Name'),
               ),
               TextFormField(
                 controller: title,
@@ -222,7 +226,7 @@ class _HomePageState extends State<SendAlert> {
                       Fluttertoast.showToast(msg: "Fill in all fields");
                     }
                   },
-                  child: Text('Submit'))
+                  child: Text('SEND'))
             ],
           ),
         )),

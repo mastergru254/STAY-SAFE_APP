@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:stay_safe/const/AppColors.dart';
 import 'package:stay_safe/ui/Ambulance_Screen.dart';
 import 'package:stay_safe/ui/NavBar.dart';
+import 'package:stay_safe/ui/emergency_page.dart';
 import 'package:stay_safe/ui/guidance_Screen.dart';
 import 'package:stay_safe/ui/request_screen.dart';
 import 'package:stay_safe/ui/send_msg.dart';
@@ -27,86 +28,51 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: NavBar(),
       //bottomNavigationBar: const BottomNavigation(),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const RequestScreen()),
-                  );
-                },
-                child: Column(
-                  children: [
-                    Container(
-                      alignment: Alignment.topCenter,
-                      child: Image.asset(
-                        "asset/request.png",
-                        height: 120,
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    Text(
-                      'Request',
-                      style: TextStyle(
-                          color: green,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10),
-                  ],
+          Container(
+            height: 150,
+            padding: EdgeInsets.all(25),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50)),
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                ),
+                child: ListTile(
+                  textColor: Colors.white,
+                  title: const Center(
+                      child: Text(
+                    'Emergency Call',
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                  )),
+                  trailing: const Icon(Icons.arrow_forward),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const EmergencyPage()));
+                  },
                 ),
               ),
-              SizedBox(height: 10),
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AmbulanceService()),
-                  );
-                },
-                child: Column(
-                  children: [
-                    Container(
-                      alignment: Alignment.topCenter,
-                      child: Image.asset(
-                        "asset/ambulace.png",
-                        height: 120,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Ambulance',
-                      style: TextStyle(
-                          color: green,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 20),
-                  ],
-                ),
-              ),
-            ],
+            ),
           ),
           SizedBox(
-            width: 20,
+            height: 40,
           ),
-          Column(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SendAlert()),
+                            builder: (context) => const RequestScreen()),
                       );
                     },
                     child: Column(
@@ -114,15 +80,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           alignment: Alignment.topCenter,
                           child: Image.asset(
-                            "asset/notification.png",
+                            "asset/request.png",
                             height: 120,
                           ),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 5),
                         Text(
-                          'Red Alert',
+                          'Request',
                           style: TextStyle(
-                              color: Colors.green,
+                              color: green,
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
@@ -136,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const GuidanceScreen()),
+                            builder: (context) => AmbulanceService()),
                       );
                     },
                     child: Column(
@@ -144,23 +110,94 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           alignment: Alignment.topCenter,
                           child: Image.asset(
-                            "asset/guide.png",
+                            "asset/ambulace.png",
                             height: 120,
                           ),
                         ),
                         SizedBox(height: 10),
                         Text(
-                          'Guidance',
+                          'Ambulance',
                           style: TextStyle(
                               color: green,
                               fontSize: 16,
                               fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 20),
                       ],
                     ),
                   ),
-                  SizedBox(width: 10),
+                ],
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SendAlert()),
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.topCenter,
+                              child: Image.asset(
+                                "asset/notification.png",
+                                height: 120,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'Red Alert',
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const GuidanceScreen()),
+                          );
+                        },
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.topCenter,
+                              child: Image.asset(
+                                "asset/guide.png",
+                                height: 120,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'Guidance',
+                              style: TextStyle(
+                                  color: green,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                    ],
+                  ),
                 ],
               ),
             ],
