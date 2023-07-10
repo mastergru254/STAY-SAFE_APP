@@ -1,5 +1,7 @@
 // ignore_for_file: file_names, sized_box_for_whitespace
 
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -223,13 +225,10 @@ class _AmbulanceServiceState extends State<AmbulanceService> {
 
   updateUserAmbulanceIsComing(String location) {
     print("MY LOCATION IS $location");
-//    if location == "blah" :
-    //    return ""
-    //elif location == "":
+    int randomminmax = Random().nextInt(30) + 30;
 
-    //else"
-
-    String response = "Ambulance is coming to $location in 20 minutes.";
+    String response =
+        "Ambulance is coming to $location in $randomminmax minutes.";
     return Fluttertoast.showToast(
       msg: response,
       toastLength: Toast.LENGTH_LONG,
