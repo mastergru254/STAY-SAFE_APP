@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:stay_safe/const/AppColors.dart';
 import 'package:stay_safe/ui/Ambulance_Screen.dart';
 import 'package:stay_safe/ui/NavBar.dart';
+import 'package:stay_safe/ui/chat_page.dart';
 import 'package:stay_safe/ui/emergency_page.dart';
-import 'package:stay_safe/ui/guidance_Screen.dart';
 import 'package:stay_safe/ui/request_screen.dart';
 import 'package:stay_safe/ui/send_msg.dart';
 
@@ -171,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const GuidanceScreen()),
+                                builder: (context) => const ChatPage()),
                           );
                         },
                         child: Column(
@@ -179,13 +179,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             Container(
                               alignment: Alignment.topCenter,
                               child: Image.asset(
-                                "asset/guide.png",
+                                "asset/chat-service-icon-512.png",
                                 height: 120,
                               ),
                             ),
                             SizedBox(height: 10),
                             Text(
-                              'Guidance',
+                              'Messaging',
                               style: TextStyle(
                                   color: green,
                                   fontSize: 16,

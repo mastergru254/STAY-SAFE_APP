@@ -195,6 +195,10 @@ class _HomePageState extends State<SendAlert> {
                 height: 20,
               ),
               ElevatedButton(
+                  style: const ButtonStyle(
+                    backgroundColor:
+                        MaterialStatePropertyAll<Color>(Colors.green),
+                  ),
                   onPressed: () async {
                     String name = username.text.trim();
                     String titleText = title.text;

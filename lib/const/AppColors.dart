@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-Color deep_orange = Color(0xFFFF6B6B);
+Color deep_orange = Color.fromARGB(255, 8, 236, 57);
 Color green = Color.fromARGB(255, 12, 240, 4);
 Color grey = Color(0xFFB1B1B1);
 Color blue = Color.fromARGB(207, 6, 10, 241);
